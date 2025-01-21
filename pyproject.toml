@@ -13,8 +13,8 @@ dependencies = [
   "nest_asyncio",
   "openai",
   "pgvector",
-  "phidata[aws]==2.5.3",
   "psycopg[binary]",
+  "pydantic",
   "pypdf",
   "pytest",
   "python-docx",
@@ -49,7 +49,7 @@ plugins = ["pydantic.mypy"]
 exclude = ["aienv*", ".venv*"]
 
 [[tool.mypy.overrides]]
-module = ["pgvector.*", "setuptools.*", "nest_asyncio.*"]
+module = ["pgvector.*", "setuptools.*", "nest_asyncio.*", "agno.docker.*", "agno.aws.*"]
 ignore_missing_imports = true
 
 [tool.uv.pip]

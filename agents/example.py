@@ -1,17 +1,17 @@
 from typing import Optional
 
-from phi.agent import Agent
-from phi.model.openai import OpenAIChat
-from phi.knowledge.agent import AgentKnowledge
-from phi.storage.agent.postgres import PgAgentStorage
-from phi.tools.duckduckgo import DuckDuckGo
-from phi.vectordb.pgvector import PgVector, SearchType
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.knowledge.agent import AgentKnowledge
+from agno.storage.agent.postgres import PostgresAgentStorage
+from agno.tools.duckduckgo import DuckDuckGoTools
+from agno.vectordb.pgvector import PgVector, SearchType
 
 from agents.settings import agent_settings
 from db.session import db_url
 
-example_agent_storage = PgAgentStorage(table_name="example_agent_sessions", db_url=db_url)
-example_agent_knowledge = AgentKnowledge(
+agent_storage = PostgresAgentStorage(table_name="example_agent_sessions", db_url=db_url)
+agent_knowledge = AgentKnowledge(
     vector_db=PgVector(table_name="example_agent_knowledge", db_url=db_url, search_type=SearchType.hybrid)
 )
 
@@ -34,7 +34,7 @@ def get_example_agent(
             temperature=agent_settings.default_temperature,
         ),
         # Tools available to the agent
-        tools=[DuckDuckGo()],
+        tools=[DuckDuckGoTools()],
         # A description of the agent that guides its overall behavior
         description="You are a highly advanced AI agent with access to an extensive knowledge base and powerful web-search capabilities.",
         # A list of instructions to follow, each as a separate item in the list
@@ -60,11 +60,11 @@ def get_example_agent(
         # Add the current date and time to the instructions
         add_datetime_to_instructions=True,
         # Store agent sessions in the database
-        storage=example_agent_storage,
+        storage=agent_storage,
         # Enable read the chat history from the database
         read_chat_history=True,
         # Store knowledge in a vector database
-        knowledge=example_agent_knowledge,
+        knowledge=agent_knowledge,
         # Enable searching the knowledge base
         search_knowledge=True,
         # Enable monitoring on phidata.app

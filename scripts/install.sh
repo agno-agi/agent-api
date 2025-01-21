@@ -13,8 +13,8 @@ source ${CURR_DIR}/_utils.sh
 print_heading "Installing workspace..."
 
 print_heading "Creating virtual env"
-print_status "VIRTUAL_ENV=${VENV_DIR} uv venv"
-VIRTUAL_ENV=${VENV_DIR} uv venv
+print_status "VIRTUAL_ENV=${VENV_DIR} uv venv --python 3.12"
+VIRTUAL_ENV=${VENV_DIR} uv venv --python 3.12
 
 print_heading "Installing requirements"
 print_status "VIRTUAL_ENV=${VENV_DIR} uv pip sync ${REPO_ROOT}/requirements.txt"
