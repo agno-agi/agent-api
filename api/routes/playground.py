@@ -1,5 +1,5 @@
 from os import getenv
-from phi.playground import Playground
+from agno.playground import Playground
 
 from agents.example import get_example_agent
 
