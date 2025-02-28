@@ -6,6 +6,7 @@ readme = "README.md"
 authors = [{ name = "Phidata Team", email = "hello@phidata.com" }]
 
 dependencies = [
+  "agno",
   "alembic",
   "duckduckgo-search",
   "fastapi[standard]",
