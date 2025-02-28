@@ -86,6 +86,8 @@ def get_chat_history(body: ChatHistoryRequest):
     # Load the agent from the database
     agent.read_from_storage()
 
+    if agent.memory is None:
+        return
     return agent.memory.get_messages()
 
 
